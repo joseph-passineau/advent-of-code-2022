@@ -16,4 +16,12 @@ public class ElvesCalorieTracker
             .OrderByDescending(x => x.TotalCalories)
             .FirstOrDefault();
     }
+
+    public int SumOfTop3ElvesTotalCalories()
+    {
+        return Elves
+            .OrderByDescending(x => x.TotalCalories)
+            .Take(3)
+            .Sum(x => x.TotalCalories);
+    }
 }

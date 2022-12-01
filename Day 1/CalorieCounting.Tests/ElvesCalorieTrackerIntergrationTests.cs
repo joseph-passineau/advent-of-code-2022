@@ -6,6 +6,31 @@ public class ElvesCalorieTrackerIntergrationTests
     public void When_Example1_Then_ShouldFindElfCarryingMostCalories()
     {
         // Arrange
+        ElvesCalorieTracker elvesCalorieTracker = GetElevesCalorieTrackerTestSample();
+
+        // Act
+        var elfWithMostCalories = elvesCalorieTracker.ElfWithMostCalories();
+
+        // Assert
+        Assert.NotNull(elfWithMostCalories);
+        Assert.Equal(24000, elfWithMostCalories.TotalCalories);
+    }
+
+    [Fact]
+    public void When_Example2_Then_ShouldCalculateSumOfTop3ElvesTotalCalories()
+    {
+        // Arrange
+        ElvesCalorieTracker elvesCalorieTracker = GetElevesCalorieTrackerTestSample();
+
+        // Act
+        var top3ElvesTotalCalories = elvesCalorieTracker.SumOfTop3ElvesTotalCalories();
+
+        // Assert
+        Assert.Equal(45000, top3ElvesTotalCalories);
+    }
+
+    private static ElvesCalorieTracker GetElevesCalorieTrackerTestSample()
+    {
         var elvesCalorieTracker = new ElvesCalorieTracker();
 
         var elf1 = new Elf();
@@ -32,12 +57,6 @@ public class ElvesCalorieTrackerIntergrationTests
         var elf5 = new Elf();
         elf5.AddFoodItemCalories(10000);
         elvesCalorieTracker.AddElf(elf5);
-
-        // Act
-        var elfWithMostCalories = elvesCalorieTracker.ElfWithMostCalories();
-
-        // Assert
-        Assert.NotNull(elfWithMostCalories);
-        Assert.Equal(24000, elfWithMostCalories.TotalCalories);
+        return elvesCalorieTracker;
     }
 }

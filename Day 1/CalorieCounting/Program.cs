@@ -42,3 +42,6 @@ else
 {
     Console.WriteLine("No elves were tracked.");
 }
+
+var top3ElvesTotalCalories = elvesCalorieTracker.SumOfTop3ElvesTotalCalories();
+Console.WriteLine($"The sum of the Calories carried by these three top elves is {top3ElvesTotalCalories}");
