@@ -8,7 +8,10 @@ var tournament = new Tournament();
 
 foreach (string line in File.ReadLines(@"input.txt"))
 {
-    var gameRound = strategyGuideParser.ParseRoundStrategy(line);
+    var gameRoundStrategy = strategyGuideParser.ParseRoundStrategy(line);
+    var wantedHandShape = tournament.GameEngine.CalculateHandShapeNeeded(gameRoundStrategy);
+    var gameRound = new GameRound(gameRoundStrategy.OpponentHandShape, wantedHandShape);
+
     var roundScore = tournament.CalculateRoundScore(gameRound);
     score += roundScore;
 }

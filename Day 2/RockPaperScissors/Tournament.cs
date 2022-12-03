@@ -1,8 +1,6 @@
 ﻿namespace RockPaperScissors;
 public class Tournament
 {
-    private readonly GameEngine gameEngine = new GameEngine();
-
     private readonly Dictionary<HandShape, int> handShapeScoreMapping = new Dictionary<HandShape, int>()
     {
         { HandShape.Rock, 1 },
@@ -17,9 +15,11 @@ public class Tournament
         { RoundResult.Won, 6 },
     };
 
+    public GameEngine GameEngine { get; } = new GameEngine();
+
     public int CalculateRoundScore(GameRound round)
     {
-        var result = gameEngine.PlayRound(round.ShouldPlayHandShape, round.OpponentHandShape);
+        var result = GameEngine.PlayRound(round.ShouldPlayHandShape, round.OpponentHandShape);
         return handShapeScoreMapping[round.ShouldPlayHandShape] + gameResultScoreMapping[result];
     }
 }

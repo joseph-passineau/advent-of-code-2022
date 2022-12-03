@@ -3,10 +3,10 @@ namespace RockPaperScissors.Tests;
 public class StrategyGuideParserTests
 {
     [Theory]
-    [InlineData("A Y", HandShape.Rock, HandShape.Paper)]
-    [InlineData("B X", HandShape.Paper, HandShape.Rock)]
-    [InlineData("C Z", HandShape.Scissors, HandShape.Scissors)]
-    public void When_ParsingRoundStrategy_ShouldReturnGameRound(string roundStrategy, HandShape expectedOpponentHand, HandShape expectedShouldPlayHand)
+    [InlineData("A Y", HandShape.Rock, RoundResult.Draw)]
+    [InlineData("B X", HandShape.Paper, RoundResult.Lost)]
+    [InlineData("C Z", HandShape.Scissors, RoundResult.Won)]
+    public void When_ParsingRoundStrategy_ShouldReturnGameRound(string roundStrategy, HandShape expectedOpponentHand, RoundResult expectedRoundResult)
     {
         // Arrange
 
@@ -14,11 +14,11 @@ public class StrategyGuideParserTests
 
         // Act
 
-        var gameRound = strategyGuideParser.ParseRoundStrategy(roundStrategy);
+        var gameRoundStrategy = strategyGuideParser.ParseRoundStrategy(roundStrategy);
 
         // Assert
 
-        Assert.Equal(expectedOpponentHand, gameRound.OpponentHandShape);
-        Assert.Equal(expectedShouldPlayHand, gameRound.ShouldPlayHandShape);
+        Assert.Equal(expectedOpponentHand, gameRoundStrategy.OpponentHandShape);
+        Assert.Equal(expectedRoundResult, gameRoundStrategy.WantedRoundResult);
     }
 }
