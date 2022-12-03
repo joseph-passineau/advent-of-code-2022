@@ -5,9 +5,14 @@ public class Rucksack
 	{
 		var middleIndex = items.Length / 2;
 
+		AllItems = items;
         FirstCompartment = items[..(middleIndex)];
         SecondCompartment = items[middleIndex..];
     }
+
+	public string AllItems { get; }
+
+	public string DistinctItems => string.Concat(AllItems.Distinct());
 
 	public string FirstCompartment { get; }
 
@@ -22,4 +27,5 @@ public class Rucksack
 			.Distinct()
 			.ToList();
     }
+
 }
