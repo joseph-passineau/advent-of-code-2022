@@ -2,38 +2,42 @@
 public class Device
 {
     private const int PacketSize = 4;
+    private const int MessageSize = 14;
     private readonly string datastream;
 
     public Device(string datastream)
     {
         this.datastream = datastream;
-        this.FirstMarkerIndex = FindFirstMarkerIndex();
+        this.FirstPacketMarkerIndex = FindMarkerIndex(PacketSize);
+        this.FirstMessageMarkerIndex = FindMarkerIndex(MessageSize);
     }
 
-    public int FirstMarkerIndex { get; }
+    public int? FirstPacketMarkerIndex { get; }
 
-    private int FindFirstMarkerIndex()
+    public int? FirstMessageMarkerIndex { get; }
+
+    private int? FindMarkerIndex(int size)
     {
         var pointer = 0;
-        while(pointer + PacketSize < datastream.Length)
+        while(pointer + size < datastream.Length)
         {
-            var packet = datastream.Substring(pointer, PacketSize);
+            var packet = datastream.Substring(pointer, size);
 
-            if (IsMarker(packet))
+            if (IsMarker(packet, size))
             {
-                return pointer + PacketSize;
+                return pointer + size;
             }
             pointer++;
         }
 
-        throw new Exception("No marker found in datastream");
+        return null;
     }
 
-    private bool IsMarker(string packet)
+    private bool IsMarker(string packet, int size)
     {
         return packet
             .ToCharArray()
             .Distinct()
-            .Count() == PacketSize;
+            .Count() == size;
     }
 }
