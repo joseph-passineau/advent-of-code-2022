@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreetopTreeHouse", "TreetopTreeHouse\TreetopTreeHouse.csproj", "{32D0DE42-DBA8-4DF8-B4C6-819301B8299D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreetopTreeHouse.Tests", "TreetopTreeHouse.Tests\TreetopTreeHouse.Tests.csproj", "{C039A3E7-66C7-41AE-8F8A-8DC33F666D9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32D0DE42-DBA8-4DF8-B4C6-819301B8299D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D0DE42-DBA8-4DF8-B4C6-819301B8299D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D0DE42-DBA8-4DF8-B4C6-819301B8299D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D0DE42-DBA8-4DF8-B4C6-819301B8299D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C039A3E7-66C7-41AE-8F8A-8DC33F666D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C039A3E7-66C7-41AE-8F8A-8DC33F666D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C039A3E7-66C7-41AE-8F8A-8DC33F666D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C039A3E7-66C7-41AE-8F8A-8DC33F666D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {917252BB-CFA5-41E9-A748-97C438FF84D8}
+	EndGlobalSection
+EndGlobal
