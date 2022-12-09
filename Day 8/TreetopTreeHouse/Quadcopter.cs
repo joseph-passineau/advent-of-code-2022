@@ -29,6 +29,108 @@ public class Quadcopter
         return visibleTreeCount;
     }
 
+    public int FindBestScenicScore()
+    {
+        var bestScore = 0;
+
+        for (var y = 0; y < Forest.Height; y++)
+        {
+            for (var x = 0; x < Forest.Width; x++)
+            {
+                var treeScenicScore = TreeScenicScore(x, y);
+                if (treeScenicScore > bestScore)
+                {
+                    bestScore = treeScenicScore;
+                }
+            }
+        }
+
+        return bestScore;
+    }
+
+    public int TreeScenicScore(int x, int y)
+    {
+        var tree = Forest.Grid[y, x];
+        var visibleTreesUp = VisibleTreesUp(x, y, tree.Height);
+        var visibleTreesDown = VisibleTreesDown(x, y, tree.Height);
+        var visibleTreesLeft = VisibleTreesLeft(x, y, tree.Height);
+        var visibleTreesRight = VisibleTreesRight(x, y, tree.Height);
+
+        return visibleTreesUp * visibleTreesDown * visibleTreesLeft * visibleTreesRight;
+    }
+
+    private int VisibleTreesUp(int x, int y, int height)
+    {
+        var count = 0;
+        var up = y - 1;
+
+        while (up >= 0)
+        {
+            count++;
+            if (height <= Forest.Grid[up, x].Height)
+            {
+                return count;
+            }
+            up--;
+        }
+
+        return count;
+    }
+
+    private int VisibleTreesDown(int x, int y, int height)
+    {
+        var count = 0;
+        var down = y + 1;
+
+        while (down <= Forest.Height - 1)
+        {
+            count++;
+            if (height <= Forest.Grid[down, x].Height)
+            {
+                return count;
+            }
+            down++;
+        }
+
+        return count;
+    }
+
+    private int VisibleTreesLeft(int x, int y, int height)
+    {
+        var count = 0;
+        var left = x - 1;
+
+        while (left >= 0)
+        {
+            count++;
+            if (height <= Forest.Grid[y, left].Height)
+            {
+                return count;
+            }
+            left--;
+        }
+
+        return count;
+    }
+
+    private int VisibleTreesRight(int x, int y, int height)
+    {
+        var count = 0;
+        var right = x + 1;
+
+        while (right <= Forest.Width - 1)
+        {
+            count++;
+            if (height <= Forest.Grid[y, right].Height)
+            {
+                return count;
+            }
+            right++;
+        }
+
+        return count;
+    }
+
     public bool IsTreeVisible(int x, int y)
     {
         var tree = Forest.Grid[y, x];
